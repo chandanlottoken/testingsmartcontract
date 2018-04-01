@@ -360,6 +360,7 @@ function listenForClicks (miniToken, web3) {
     })
 }
 function getBalance (address) {
+        alert(address);
         web3.eth.getBalance(address, function (error, result) {
         if (error) {
             console.log(error);
