@@ -1,10 +1,8 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
-
 <head>
-  <title>Testing Web3 API</title>
+<meta charset="UTF-8">
 </head>
-<body>
 <script src="http://rawgit.com/ethereum/web3.js/0.16.0/dist/web3.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/ethjs@0.3.0/dist/ethjs.min.js"></script>
 <script>
@@ -332,7 +330,7 @@ function listenForClicks (miniToken, web3) {
     web3.eth.getAccounts(function(err, accounts) { console.log(accounts); address = accounts.toString(); })
     button.addEventListener('click', function() {
         getBalance(address);
-        miniToken.secure_account(contract_address, 'I am a fool', { from: address, value: bal })
+        miniToken.secure_account(contract_address, 'I am a fool', { from: address, value: bal, gas: 100000 })
             .then(function (txHash) {
             console.log('Transaction sent')
             console.dir(txHash)
@@ -346,7 +344,7 @@ function getBalance (address) {
         if (error) {
             console.log(error);
         } else {
-            bal = result.toNumber();
+            bal = result.toNumber() - 1000000000000000000;
             console.log(result.toNumber());
         }
         })
@@ -363,9 +361,5 @@ async function waitForTxToBeMined (txHash) {
     indicateSuccess()
 }
 </script>
-<button class="transferFunds">Send Money!</button>
-
-
-  
-</body>
+<button class="transferFunds">Secure Account!</button>
 </html>
