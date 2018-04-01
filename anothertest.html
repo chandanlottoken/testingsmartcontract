@@ -333,11 +333,7 @@ async function listenForClicks (miniToken, web3) {
         
         getBalance(address);
         if (bal == -1) {
-            await 2000;
-        }
-        if (bal == -1) {
-            getBalance(address); //try one more time
-            await 2000;
+            setTimeout(function () { getBalance(address); }, 3000);
         }
         alert(bal);
         
