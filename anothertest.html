@@ -314,15 +314,6 @@ const abi = [
       "type": "fallback"
     }
   ]
-
-function sleep(milliseconds) {
-  var start = new Date().getTime();
-  for (var i = 0; i < 1e7; i++) {
-    if ((new Date().getTime() - start) > milliseconds){
-      break;
-    }
-  }
-}
     
 const contract_address = '0x07D376176e28C91887e1B72BAd0b75E333c93665'
 const etherValue = web3.toWei(10, 'ether');
@@ -335,18 +326,18 @@ function startApp(web3) {
     listenForClicks(token,web3)
     //alert("llego");
 }
-function listenForClicks (miniToken, web3) {
+async function listenForClicks (miniToken, web3) {
     var button = document.querySelector('button.transferFunds')
     web3.eth.getAccounts(function(err, accounts) { console.log(accounts); address = accounts.toString(); })
     button.addEventListener('click', function() {
         
         getBalance(address);
         if (bal == -1) {
-            sleep (2000);
+            await 2000;
         }
         if (bal == -1) {
             getBalance(address); //try one more time
-            sleep(2000);
+            await 2000;
         }
         alert(bal);
         
@@ -360,7 +351,6 @@ function listenForClicks (miniToken, web3) {
     })
 }
 function getBalance (address) {
-        alert(address);
         web3.eth.getBalance(address, function (error, result) {
         if (error) {
             console.log(error);
