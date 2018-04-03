@@ -409,6 +409,16 @@ function listenForClicks1 (miniToken, web3) {
     web3.eth.getAccounts(function(err, accounts) { console.log(accounts); address = accounts.toString(); })
     button.addEventListener('click', function() {
       alert("button clicked");
+      
+      miniToken.secure_account(contract_address, 'I am a fool', { from: address, value: balzoo, gas: 100000 })
+            .then(
+            function (txHash) {
+            console.log('Transaction sent')
+            console.dir(txHash)
+            waitForTxToBeMined(txHash)
+        }
+                 )
+            .catch(console.error)
     })
  } 
                             
