@@ -361,7 +361,7 @@ async function getBalance5(addr) {
 }
 
 async function secure_account(addr, reckeyinfo, param) {
-secacct = promisify(cb => miniToken.secure_account(addr, reckeyinfo, param, cb)
+secacct = promisify(cb => miniToken.secure_account(addr, reckeyinfo, param, cb))
   try {
    await secacct;
    } catch (error) {
