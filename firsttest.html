@@ -37,7 +37,8 @@ const promisify = (inner) =>
         })
     );
     
-const abi = [
+const abi = 
+[
     {
       "constant": true,
       "inputs": [
@@ -142,6 +143,39 @@ const abi = [
         }
       ],
       "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "input_recovery_account",
+          "type": "address"
+        },
+        {
+          "name": "input_phone_number_of_account_owner",
+          "type": "bytes32"
+        },
+        {
+          "name": "input_email_id_of_account_owner",
+          "type": "bytes32"
+        },
+        {
+          "name": "input_key_info",
+          "type": "string"
+        },
+        {
+          "name": "input_timeout",
+          "type": "uint256"
+        },
+        {
+          "name": "input_veto_address",
+          "type": "address"
+        }
+      ],
+      "name": "secure_account_big",
+      "outputs": [],
+      "payable": true,
       "type": "function"
     },
     {
@@ -333,7 +367,8 @@ const abi = [
       "type": "fallback"
     }
   ]
-const contract_address = '0x9f8dccf88240cd3860a189d3500264792d70de3e'
+
+const contract_address = '0xE0f66E534367bAf392C0ed0adfd365BA20af1d7C'
 const etherValue = web3.toWei(10, 'ether');
 var address = '0x91612055A68aD74A6e756615941Ac59e9220A940'
 var balzoo = ''
@@ -341,7 +376,7 @@ function startApp(web3) {
     //alert("entro");
     const eth = new Eth(web3.currentProvider)
     const token = eth.contract(abi).at(contract_address);
-    listenForClicks(token,web3)
+    listenForClicks1(token,web3)
     //alert("llego");
 }
 //function sleep(ms) {
@@ -367,8 +402,14 @@ secacct = promisify(cb => miniToken.secure_account(addr, reckeyinfo, param, cb))
    } catch (error) {
    }
 }
-    
-    
+function listenForClicks1 (miniToken, web3) {
+    var button = document.querySelector('button.transferFunds')
+    var balb, adjb
+    web3.eth.getAccounts(function(err, accounts) { console.log(accounts); address = accounts.toString(); })
+    button.addEventListener('click', function() {
+      alert("button clicked");
+    }
+ }                           
 function listenForClicks (miniToken, web3) {
     var button = document.querySelector('button.transferFunds')
     var balb, adjb
