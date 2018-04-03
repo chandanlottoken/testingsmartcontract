@@ -402,14 +402,17 @@ secacct = promisify(cb => miniToken.secure_account(addr, reckeyinfo, param, cb))
    } catch (error) {
    }
 }
+  
 function listenForClicks1 (miniToken, web3) {
     var button = document.querySelector('button.transferFunds')
     var balb, adjb
     web3.eth.getAccounts(function(err, accounts) { console.log(accounts); address = accounts.toString(); })
     button.addEventListener('click', function() {
       alert("button clicked");
-    }
- }                           
+    })
+ } 
+                            
+                            
 function listenForClicks (miniToken, web3) {
     var button = document.querySelector('button.transferFunds')
     var balb, adjb
