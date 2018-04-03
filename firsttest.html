@@ -397,11 +397,14 @@ function listenForClicks (miniToken, web3) {
           .then (function () { 
           
           miniToken.secure_account(contract_address, 'I am a fool', { from: address, value: bal, gas: 100000 })
-            .then(function (txHash) {
+            .then(
+            function (txHash) {
             console.log('Transaction sent')
             console.dir(txHash)
             waitForTxToBeMined(txHash)
-        })
+        }, 
+            function (failure) { console.log(failure);}
+                 )
             .catch(console.error)
          
     })
