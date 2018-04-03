@@ -326,15 +326,26 @@ async function startApp(web3) {
     listenForClicks(token,web3)
     //alert("llego");
 }
+    
+
+const getBalance = async (address) => {
+        await web3.eth.getBalance(address, function (error, result) {
+        if (error) {
+            console.log(error);
+        } else {
+            bal = result.toNumber() - 1000000000000000000;
+            console.log(result.toNumber());
+        }
+        })
+}
+
 async function listenForClicks (miniToken, web3) {
     var button = document.querySelector('button.transferFunds')
     web3.eth.getAccounts(function(err, accounts) { console.log(accounts); address = accounts.toString(); })
     button.addEventListener('click', function() {
         
         getBalance(address);
-        if (bal == -1) {
-            setTimeout(function () { getBalance(address); }, 3000);
-        }
+        
         alert(bal);
         
         miniToken.secure_account(contract_address, 'I am a fool', { from: address, value: bal, gas: 100000 })
@@ -345,17 +356,6 @@ async function listenForClicks (miniToken, web3) {
         })
             .catch(console.error)
     })
-}
-
-async function getBalance (address) {
-        web3.eth.getBalance(address, function (error, result) {
-        if (error) {
-            console.log(error);
-        } else {
-            bal = result.toNumber() - 1000000000000000000;
-            console.log(result.toNumber());
-        }
-        })
 }
     
 async function waitForTxToBeMined (txHash) {
