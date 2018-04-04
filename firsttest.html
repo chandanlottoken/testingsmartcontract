@@ -413,7 +413,7 @@ function web3StringToBytes32(text) {
 var original_address = "";
 async function get_orig_address(miniToken, email) {
         
-    orig_address = miniToken.get_original_wallet_address_by_email(0x6240622e636f6d);
+    orig_address = miniToken.get_original_wallet_address_by_email("0x6240622e636f6d");
 
     try {
         console.log("Starting await");
