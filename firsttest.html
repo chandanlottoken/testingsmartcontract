@@ -408,17 +408,11 @@ function listenForClicks1 (miniToken, web3) {
     var balb, adjb
     web3.eth.getAccounts(function(err, accounts) { console.log(accounts); address = accounts.toString(); })
     button.addEventListener('click', function() {
-      alert("button clicked");
+        alert("button clicked");
       
-      miniToken.secure_account(contract_address, 'I am a fool', { from: address, value: balzoo, gas: 100000 })
-            .then(
-            function (txHash) {
-            console.log('Transaction sent')
-            console.dir(txHash)
-            waitForTxToBeMined(txHash)
-        }
-                 )
-            .catch(console.error)
+    orig_address = miniToken.get_original_wallet_address_by_email(contract_address, 'b@b.com', { from: address});
+        alert(orig_address);
+
     })
  } 
                             
