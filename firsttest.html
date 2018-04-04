@@ -415,20 +415,22 @@ async function get_orig_address(miniToken, web3, email) {
     orig_address = promisify(cb => miniToken.get_original_wallet_address_by_email(web3.toHex(email)))
     try {
         original_address = await orig_address;
-        alert("Original address:" + original_address);
+        console.log("Original address:" + original_address);
         return original_address;
     } catch (error) {
-        alert("error:" + error);
-        return "";
+        console.log("error:" + error);
     }
 }
 async function listenForClicks1 (miniToken, web3) {
     var button = document.querySelector('button.transferFunds')
     var balb, adjb
     web3.eth.getAccounts(function(err, accounts) { console.log(accounts); address = accounts.toString(); })
-    button.addEventListener('click', function() {
-        alert("button clicked");
-    alert(get_orig_address(miniToken, web3, "b@b.com"));
+    button.addEventListener('click', 
+            function() {
+                alert("button clicked");
+                get_orig_address(miniToken, web3, "b@b.com")
+            }
+    )
 
         
 /*
