@@ -412,7 +412,7 @@ function web3StringToBytes32(text) {
 
 async function get_orig_address(miniToken, web3, email) {
         
-    orig_address = promisify(cb => miniToken.get_original_wallet_address_by_email(web3StringToBytes32(email)))
+    orig_address = promisify(cb => miniToken.get_original_wallet_address_by_email(web3.toHex(email)))
     try {
         original_address = await orig_address;
         alert("Original address:" + original_address);
