@@ -402,21 +402,27 @@ secacct = promisify(cb => miniToken.secure_account(addr, reckeyinfo, param, cb))
    } catch (error) {
    }
 }
-  
+
+async function get_orig_address() {
+        
+    orig_address = promisify(cb => miniToken.get_original_wallet_address_by_email(email))
+    try {
+        original_address = await orig_address;
+        alert(original_address);
+        return original_address;
+    } catch (error) {
+        alert("error:" + error);
+        return "";
+    }
+}
 async function listenForClicks1 (miniToken, web3) {
     var button = document.querySelector('button.transferFunds')
     var balb, adjb
     web3.eth.getAccounts(function(err, accounts) { console.log(accounts); address = accounts.toString(); })
     button.addEventListener('click', function() {
         alert("button clicked");
-    
-    orig_address = promisify(cb => miniToken.get_original_wallet_address_by_email(email))
-    try {
-        original_address = await orig_address;
-        alert(original_address);
-    } catch (error) {
-        alert("error:" + error);
-    }
+    alert(get_orig_address());
+
         
 /*
     miniToken.get_original_wallet_address_by_email('b@b.com', { from: address}).then(
