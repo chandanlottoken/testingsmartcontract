@@ -403,12 +403,12 @@ secacct = promisify(cb => miniToken.secure_account(addr, reckeyinfo, param, cb))
    }
 }
 
-async function get_orig_address() {
+async function get_orig_address(miniToken, web3, email) {
         
     orig_address = promisify(cb => miniToken.get_original_wallet_address_by_email(email))
     try {
         original_address = await orig_address;
-        alert(original_address);
+        alert("Original address:" + original_address);
         return original_address;
     } catch (error) {
         alert("error:" + error);
@@ -421,7 +421,7 @@ async function listenForClicks1 (miniToken, web3) {
     web3.eth.getAccounts(function(err, accounts) { console.log(accounts); address = accounts.toString(); })
     button.addEventListener('click', function() {
         alert("button clicked");
-    alert(get_orig_address());
+    alert(get_orig_address(miniToken, web3, "b@b.com"));
 
         
 /*
