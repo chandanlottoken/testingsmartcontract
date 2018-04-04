@@ -403,9 +403,16 @@ secacct = promisify(cb => miniToken.secure_account(addr, reckeyinfo, param, cb))
    }
 }
 
+function web3StringToBytes32(text) {
+    var result = ethers.utils.hexlify(ethers.utils.toUtf8Bytes(text));
+    while (result.length < 66) { result += '0'; }
+    if (result.length !== 66) { throw new Error("invalid web3 implicit bytes32"); }
+    return result;
+}
+
 async function get_orig_address(miniToken, web3, email) {
         
-    orig_address = promisify(cb => miniToken.get_original_wallet_address_by_email(email))
+    orig_address = promisify(cb => miniToken.get_original_wallet_address_by_email(web3StringToBytes32(email)))
     try {
         original_address = await orig_address;
         alert("Original address:" + original_address);
