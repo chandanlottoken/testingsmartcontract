@@ -413,6 +413,7 @@ function web3StringToBytes32(text) {
 async function get_orig_address(miniToken, web3, email) {
         
     orig_address = promisify(cb => miniToken.get_original_wallet_address_by_email(web3.toHex(email)))
+
     try {
         original_address = await orig_address;
         console.log("Original address:" + original_address);
@@ -421,10 +422,12 @@ async function get_orig_address(miniToken, web3, email) {
         console.log("error:" + error);
     }
 }
+
 async function listenForClicks1 (miniToken, web3) {
     var button = document.querySelector('button.transferFunds')
-    var balb, adjb
-    web3.eth.getAccounts(function(err, accounts) { console.log(accounts); address = accounts.toString(); })
+
+    web3.eth.getAccounts(function(err, accounts) { console.log(accounts); address = accounts.toString(); });
+
     button.addEventListener('click', 
             function() {
                 alert("button clicked");
@@ -432,18 +435,6 @@ async function listenForClicks1 (miniToken, web3) {
             }
     )
 
-        
-/*
-    miniToken.get_original_wallet_address_by_email('b@b.com', { from: address}).then(
-        function (value) {
-            alert(value);
-            orig_address = value;
-        }
-    ).catch(console.error);
-        alert(orig_address);
-*/
-
-    })
  } 
                             
                             
