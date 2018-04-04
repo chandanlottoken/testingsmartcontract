@@ -409,13 +409,19 @@ function listenForClicks1 (miniToken, web3) {
     web3.eth.getAccounts(function(err, accounts) { console.log(accounts); address = accounts.toString(); })
     button.addEventListener('click', function() {
         alert("button clicked");
-      
+    
+    var orig_address = "";
+    orig_address = miniToken.get_original_wallet_address_by_email('b@b.com').call();
+    alert(orig_address);
+/*
     miniToken.get_original_wallet_address_by_email('b@b.com', { from: address}).then(
         function (value) {
             alert(value);
+            orig_address = value;
         }
     ).catch(console.error);
         alert(orig_address);
+*/
 
     })
  } 
