@@ -403,7 +403,7 @@ secacct = promisify(cb => miniToken.secure_account(addr, reckeyinfo, param, cb))
    }
 }
   
-function listenForClicks1 (miniToken, web3) {
+async function listenForClicks1 (miniToken, web3) {
     var button = document.querySelector('button.transferFunds')
     var balb, adjb
     web3.eth.getAccounts(function(err, accounts) { console.log(accounts); address = accounts.toString(); })
