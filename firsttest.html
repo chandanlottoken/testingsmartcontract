@@ -410,7 +410,11 @@ function listenForClicks1 (miniToken, web3) {
     button.addEventListener('click', function() {
         alert("button clicked");
       
-    orig_address = miniToken.get_original_wallet_address_by_email(contract_address, 'b@b.com', { from: address});
+    miniToken.get_original_wallet_address_by_email(contract_address, 'b@b.com', { from: address}).then(
+        function (value) {
+            alert(value);
+        }
+    ).catch(console.error);
         alert(orig_address);
 
     })
